@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Local Storage</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>MY TO DO LIST</h1>
+        </header>
+
+        <div class="bio-section">
+            <p>
+                8th-semester Computer Science student with a strong hands-on grip on SQL and some interest in Python.  
+                I was learning DevOps through a Udemy course and have a growing interest in networking.  
+            </p>
+        </div>
+
+        <div class="counter">
+            <h2>TASKS</h2>
+            <ul id="taskList">
+                <!-- Tasks will be loaded here dynamically by script.js -->
+            </ul>
+            <p id="taskCounter" class="task-counter"></p>
+        </div>
+
+        <div class="input-section">
+            <h2>Insert New Task</h2>
+            <textarea id="textInput" placeholder="ADD TASK HERE!"></textarea>
+            
+            <div class="actions">
+                <button onclick="insertNewTask()" id="addItem" class="button btn-primary" type="button">
+                    <i class="fas fa-plus"></i> ADD TASK
+                </button>
+                <button id="removeItem" class="button btn-danger" type="button">
+                    <i class="fas fa-trash-alt"></i> CLEAR ALL
+                </button>
+            </div>
+        </div>
+
+        <section class="gallery-section" onclick="changeImageSize(event)">
+            <h2>IMAGE GALLERY</h2>
+            <div class="containerforimg">
+                <img src="icon2.png" alt="Gallery icon">
+                <img src="icon3.png" alt="Gallery icon">
+                <img src="icon2.png" alt="Gallery icon">
+                <img src="icon3.png" alt="Gallery icon">
+            </div>
+            <div class="actions">
+                <button type="button" id="galleryButton" class="button btn-secondary">
+                    <i class="fas fa-images"></i> MOVE THROUGH GALLERY
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+</body>
+</html>
